@@ -1,6 +1,5 @@
-package UnitTestBase;
+package TestBase;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  * Created by norah on 7/22/2021.
  */
-public class UnitTestBaseFactory {
+public class TestBaseFactory {
     @FindBy(xpath = "//div[@class='col-md-3 sidenav']//div[@class='panel-heading']")
     public WebElement MenuListHeader;
 

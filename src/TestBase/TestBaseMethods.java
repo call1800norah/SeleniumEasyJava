@@ -1,9 +1,10 @@
-package UnitTestBase;
+package TestBase;
 
 import inputFormsPageFactory.SimpleFormDemo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.After;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,16 +27,16 @@ import java.util.NoSuchElementException;
 /**
  * Created by norah on 7/22/2021.
  */
-public class UnitTestBaseMethods {
-    public WebDriver driver;
-    public WebDriverWait wait;
-    public Duration duration;
+public class TestBaseMethods {
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Duration duration;
 
     @Before
     public  void initialize(){
 
         //Setting the driver executable
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriber\\bin\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
 
         //Initiating chrome driver
         driver = new ChromeDriver();
@@ -68,11 +69,11 @@ public class UnitTestBaseMethods {
             wait.until(e->element.isDisplayed());
             Assert.assertTrue("element displayed as expected", true);
         }
-        catch (Exception e)
-        {
-                Assert.assertFalse("WaitForDisplayed timed out in 30seconds",false);
-               System.out.println(e);
+        catch (TimeoutException e) {
+            Assert.assertFalse("WaitForDisplayed timed out in 30seconds", false);
+            System.out.println(e.getMessage());
         }
+
     }
     //Wait for IWebElement to be enabled using WebDriverWait
     public void WaitForEnabled(WebElement element)
@@ -89,10 +90,10 @@ public class UnitTestBaseMethods {
             wait.until(e->element.isDisplayed());
             Assert.assertTrue("element enabled as expected", true);
         }
-        catch (Exception e)
+        catch (TimeoutException e)
         {
             Assert.assertFalse("WaitForEnabled timed out in 30seconds",false);
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
     public void CompareListWebElementToListString(List<WebElement> webElement, List<String> stringElement)
@@ -101,7 +102,7 @@ public class UnitTestBaseMethods {
         int i = 0;
         for (String str:stringElement)
         {
-            String message =  String.format("CompareWebElementCollectionToStringList failed. --details: Expected list item '%s', but found '%s'",
+            String message =  String.format("CompareListWebElementToStringList failed. --details: Expected list item '%s', but found '%s'",
                             str, webElement.get(i).getText().trim());
             Assert.assertTrue(message, str.equals(webElement.get(i).getText().trim()));
 
@@ -152,11 +153,11 @@ public class UnitTestBaseMethods {
     }
     public void MenuList(String menuName)
     {
-        UnitTestBaseFactory unitTestBaseFactory = PageFactory.initElements(driver, UnitTestBaseFactory.class);
+        TestBaseFactory testBaseFactory = PageFactory.initElements(driver, TestBaseFactory.class);
         List<WebElement> elementList = new ArrayList<WebElement>();
-        elementList.add(unitTestBaseFactory.MenuListHeader);
-        elementList.add(unitTestBaseFactory.AllExamplesNavBar);
-        elementList.add(unitTestBaseFactory.InputFormsNavBar);
+        elementList.add(testBaseFactory.MenuListHeader);
+        elementList.add(testBaseFactory.AllExamplesNavBar);
+        elementList.add(testBaseFactory.InputFormsNavBar);
 
        List<String> elementListString = new ArrayList<String>();
        elementListString.add("Menu List");
@@ -165,7 +166,7 @@ public class UnitTestBaseMethods {
 
         VerifyElementList(elementList, elementListString);
 
-        unitTestBaseFactory.InputFormsNavBar.click();
+        testBaseFactory.InputFormsNavBar.click();
         List<String> elementCollectionItems =  new ArrayList<String>();
 
         elementCollectionItems.add("Simple Form Demo");
@@ -176,9 +177,9 @@ public class UnitTestBaseMethods {
         elementCollectionItems.add("Ajax Form Submit");
         elementCollectionItems.add("JQuery Select dropdown");
 
-        VerifyElementList(unitTestBaseFactory.InputFormsItems, elementCollectionItems);
+        VerifyElementList(testBaseFactory.InputFormsItems, elementCollectionItems);
 
-        for (WebElement e:unitTestBaseFactory.InputFormsItems)
+        for (WebElement e: testBaseFactory.InputFormsItems)
         {
             if (e.getText().trim().equals(menuName))
             {
@@ -188,7 +189,7 @@ public class UnitTestBaseMethods {
         }
     }
 
-    public void ImageCloseMethod(String menuName) throws InterruptedException {
+    public void ImageCloseMethod(String menuName) {
         SimpleFormDemo simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
         long timeoutInSeconds = 30;
         wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -201,7 +202,7 @@ public class UnitTestBaseMethods {
         }
         else if ((timeoutInSeconds >= 30) && (!simpleFormDemo.ImageDarkener.isDisplayed()))
         {
-            sleep(2000);
+            wait.until(e->simpleFormDemo.ImageDarkener.isDisplayed());
             simpleFormDemo.ImageCloseButton.click();
             MenuList(menuName);
         }

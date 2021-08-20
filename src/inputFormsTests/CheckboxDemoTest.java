@@ -1,12 +1,12 @@
 package inputFormsTests;
 
-import UnitTestBase.UnitTestBaseMethods;
+import TestBase.TestBaseMethods;
 import inputFormsPageFactory.CheckboxDemo;
 
 /**
  * Created by norah on 7/22/2021.
  */
-public class CheckboxDemoUnitTest extends UnitTestBaseMethods{
+public class CheckboxDemoTest extends TestBaseMethods {
     CheckboxDemo checkboxDemo;
     public void SingleCheckboxDemo(){
 
