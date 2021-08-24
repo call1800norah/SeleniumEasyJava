@@ -78,7 +78,7 @@ public class TestBaseMethods {
 
     }
     //Wait for IWebElement to be enabled using WebDriverWait
-    public void WaitForEnabled(WebElement element)
+    public void WaitForSelected(WebElement element)
     {
         Assert.assertNotNull("The element return as null.", element);
 
@@ -89,8 +89,8 @@ public class TestBaseMethods {
 
         try
         {
-            wait.until(e->element.isDisplayed());
-            Assert.assertTrue("element enabled as expected", true);
+            wait.until(e->element.isSelected());
+            Assert.assertTrue("element was selected as expected", true);
         }
         catch (TimeoutException e)
         {
@@ -100,16 +100,11 @@ public class TestBaseMethods {
     }
     public void CompareListWebElementToListString(List<WebElement> webElement, List<String> stringElement)
     {
-       // webElement = new ArrayList<>();
         int i = 0;
         for (String str:stringElement)
         {
-            //String message =  String.format("CompareListWebElementToStringList failed. --details: Expected list item '%s', but found '%s'",
-                            //str, webElement.get(i).getText().trim());
             Assert.assertTrue(str.equals(webElement.get(i).getText().trim()));
-
             i++;
-
         }
     }
 
@@ -134,10 +129,10 @@ public class TestBaseMethods {
 
     //wait for the element to be clickable. Retry maxTries times.
     public void ClickWhenAble(WebElement element, long maxTries) {
-        WaitForEnabled(element);
         for (int retryCount = 1; retryCount <= maxTries; retryCount++) {
             {
                 try {
+
                     element.click();
                     break;
 
@@ -149,6 +144,7 @@ public class TestBaseMethods {
                 {
                     System.out.println("Click reached maximum tries of" + maxTries);
                 }
+                wait.pollingEvery(Duration.ofMillis(500));
             }
 
         }

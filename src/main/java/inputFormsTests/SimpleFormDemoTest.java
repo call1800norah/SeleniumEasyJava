@@ -51,5 +51,34 @@ public class SimpleFormDemoTest extends TestBaseMethods {
         Assert.assertTrue(simpleFormDemo.MessageDisplay.getText().contains(message) );
 
     }
+    @Test
+    public void TwoInputFieldUnitTest()
+    {
+        simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
+        List<WebElement> twoInputLabelsElement = new ArrayList<>();
+        twoInputLabelsElement.add(simpleFormDemo.EnterALabel);
+        twoInputLabelsElement.add( simpleFormDemo.EnterBLabel);
+        twoInputLabelsElement.add(simpleFormDemo.TotalLabel);
+
+        List<String> twoInputLabelsString = new ArrayList<>();
+        twoInputLabelsString.add("Enter a");
+        twoInputLabelsString.add("Enter b");
+        twoInputLabelsString.add("Total a + b =");
+        VerifyElementList(twoInputLabelsElement, twoInputLabelsString);
+        ImageCloseMethod("Input Forms");
+        SumOfTwoNumbers(5, 6);
+    }
+    private void SumOfTwoNumbers(int a, int b)
+    {
+        simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
+
+        simpleFormDemo.InputA.sendKeys(Integer.toString(a));
+        simpleFormDemo.InputB.sendKeys(Integer.toString(b));
+        int sum = a + b;
+
+        ClickWhenAble(simpleFormDemo.GetTotalButton, 10);
+        Assert.assertTrue(" Sum of the two number values does not match the value displayed on the page.",
+                Integer.toString(sum).equals(simpleFormDemo.DisplayValue.getText()));
+    }
 
 }

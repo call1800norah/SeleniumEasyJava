@@ -34,10 +34,10 @@ public class SimpleFormDemo {
 
     //Two Input Field
     @FindBy(xpath = "//label[@for='value1']")
-    public WebElement EnteraLabel;
+    public WebElement EnterALabel;
 
     @FindBy(xpath = "//label[@for='value2']")
-    public WebElement EnterbLabel;
+    public WebElement EnterBLabel;
 
     @FindBy(xpath = "//label[text()=' Total a + b = ']")
     public WebElement TotalLabel;
