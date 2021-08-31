@@ -79,15 +79,7 @@ public class TestBaseMethods {
 
     }
 
-    public void CompareListWebElementToListString(List<WebElement> elements, List<String> strElements)
-    {
-        int i = 0;
-        for (String str:strElements)
-        {
-            Assert.assertTrue(str.equals(elements.get(i).getText().trim()));
-            i++;
-        }
-    }
+
 
     //Verify a list of elements are all displayed.
     public void VerifyElementList(List<WebElement> elements, List<String> strElements)
@@ -95,6 +87,15 @@ public class TestBaseMethods {
         for(WebElement e:elements) {
             WaitForDisplayed(e);
             CompareListWebElementToListString(elements, strElements);
+        }
+    }
+    public void CompareListWebElementToListString(List<WebElement> elements, List<String> strElements)
+    {
+        int i = 0;
+        for (String str:strElements)
+        {
+            Assert.assertTrue(str.equals(elements.get(i).getText().trim()));
+            i++;
         }
     }
 
