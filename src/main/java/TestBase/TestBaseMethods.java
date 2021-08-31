@@ -57,6 +57,7 @@ public class TestBaseMethods {
     public void TestClean() {
         driver.quit();
     }
+
     //Wait for IWebElement to be displayed using WebDriverWait
     public void WaitForDisplayed(WebElement element) {
         Assert.assertNotNull("The element return as null.", element);
@@ -69,61 +70,31 @@ public class TestBaseMethods {
         try
         {
             wait.until(e->element.isDisplayed());
-            Assert.assertTrue("element displayed as expected", true);
+            Assert.assertTrue("element was not displayed.", element.isDisplayed());
         }
         catch (TimeoutException e) {
-            Assert.assertFalse("WaitForDisplayed timed out in 30seconds", false);
+            Assert.assertFalse("WaitForDisplayed timed out in 30seconds", element.isDisplayed());
             System.out.println(e.getMessage());
         }
 
     }
-    //Wait for IWebElement to be enabled using WebDriverWait
-    public void WaitForSelected(WebElement element)
-    {
-        Assert.assertNotNull("The element return as null.", element);
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofSeconds(5))
-                .ignoring(NoSuchElementException.class);
-
-        try
-        {
-            wait.until(e->element.isSelected());
-            Assert.assertTrue("element was selected as expected", true);
-        }
-        catch (TimeoutException e)
-        {
-            Assert.assertFalse("WaitForEnabled timed out in 30seconds",false);
-            e.printStackTrace();
-        }
-    }
-    public void CompareListWebElementToListString(List<WebElement> webElement, List<String> stringElement)
+    public void CompareListWebElementToListString(List<WebElement> elements, List<String> strElements)
     {
         int i = 0;
-        for (String str:stringElement)
+        for (String str:strElements)
         {
-            Assert.assertTrue(str.equals(webElement.get(i).getText().trim()));
+            Assert.assertTrue(str.equals(elements.get(i).getText().trim()));
             i++;
         }
     }
 
     //Verify a list of elements are all displayed.
-    public void VerifyElementList(List<WebElement> elements, List<String> strList)
+    public void VerifyElementList(List<WebElement> elements, List<String> strElements)
     {
         for(WebElement e:elements) {
             WaitForDisplayed(e);
-            Assert.assertTrue(e.isDisplayed());
-            CompareListWebElementToListString(elements, strList);
-        }
-    }
-
-    //Verify a array of elements are all displayed.
-    public void ElementArrayDisplayed(WebElement[] elements)
-    {
-        for(WebElement e:elements) {
-            WaitForDisplayed(e);
-            Assert.assertTrue(e.isDisplayed());
+            CompareListWebElementToListString(elements, strElements);
         }
     }
 
