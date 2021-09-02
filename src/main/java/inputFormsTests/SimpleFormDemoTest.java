@@ -20,65 +20,65 @@ public class SimpleFormDemoTest extends TestBaseMethods {
     public SimpleFormDemo simpleFormDemo;
 
     @Test
-    public void SingleInputFieldUnitTest(){
+    public void singleInputFieldUnitTest(){
         simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
         List<WebElement> labelsElementList = new ArrayList<>();
-        labelsElementList.add( simpleFormDemo.EnterMessageLabel);
-        labelsElementList.add(simpleFormDemo.YourMessageLabel);
+        labelsElementList.add( simpleFormDemo.enterMessageLabel);
+        labelsElementList.add(simpleFormDemo.yourMessageLabel);
 
         List<String> labelListString = new ArrayList<>();
         labelListString.add("Enter message");
         labelListString.add("Your Message:");
 
         //Method for closing Image popup
-        ImageCloseMethod("Input Forms");
+        imageCloseMethod("Input Forms");
 
         //Verify message headers and texts displayed
-        VerifyElementList(labelsElementList, labelListString);
+        verifyElementList(labelsElementList, labelListString);
 
 
 
-        InputMesssage("Hello Selenium");
+        inputMesssage("Hello Selenium");
 
 
     }
-    private void InputMesssage(String message)
+    private void inputMesssage(String message)
     {
         simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
-        simpleFormDemo.InputMessageBox.sendKeys(message);
-        simpleFormDemo.ShowMessageButton.click();
+        simpleFormDemo.inputMessageBox.sendKeys(message);
+        simpleFormDemo.showMessageButton.click();
         //String formattedMessage = String.format("%s was not displayed.",message);
-        Assert.assertTrue(simpleFormDemo.MessageDisplay.getText().contains(message) );
+        Assert.assertTrue(simpleFormDemo.messageDisplay.getText().contains(message) );
 
     }
     @Test
-    public void TwoInputFieldUnitTest()
+    public void twoInputFieldUnitTest()
     {
         simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
         List<WebElement> twoInputLabelsElement = new ArrayList<>();
-        twoInputLabelsElement.add(simpleFormDemo.EnterALabel);
-        twoInputLabelsElement.add( simpleFormDemo.EnterBLabel);
-        twoInputLabelsElement.add(simpleFormDemo.TotalLabel);
+        twoInputLabelsElement.add(simpleFormDemo.enterALabel);
+        twoInputLabelsElement.add( simpleFormDemo.enterBLabel);
+        twoInputLabelsElement.add(simpleFormDemo.totalLabel);
 
         List<String> twoInputLabelsString = new ArrayList<>();
         twoInputLabelsString.add("Enter a");
         twoInputLabelsString.add("Enter b");
         twoInputLabelsString.add("Total a + b =");
-        VerifyElementList(twoInputLabelsElement, twoInputLabelsString);
-        ImageCloseMethod("Input Forms");
-        SumOfTwoNumbers(5, 6);
+        verifyElementList(twoInputLabelsElement, twoInputLabelsString);
+        imageCloseMethod("Input Forms");
+        sumOfTwoNumbers(5, 6);
     }
-    private void SumOfTwoNumbers(int a, int b)
+    private void sumOfTwoNumbers(int a, int b)
     {
         simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
 
-        simpleFormDemo.InputA.sendKeys(Integer.toString(a));
-        simpleFormDemo.InputB.sendKeys(Integer.toString(b));
+        simpleFormDemo.inputA.sendKeys(Integer.toString(a));
+        simpleFormDemo.inputB.sendKeys(Integer.toString(b));
         int sum = a + b;
 
-        ClickWhenAble(simpleFormDemo.GetTotalButton, 10);
+        clickWhenAble(simpleFormDemo.getTotalButton, 10);
         Assert.assertTrue(" Sum of the two number values does not match the value displayed on the page.",
-                Integer.toString(sum).equals(simpleFormDemo.DisplayValue.getText()));
+                Integer.toString(sum).equals(simpleFormDemo.displayValue.getText()));
     }
 
 }

@@ -9,49 +9,49 @@ import org.openqa.selenium.support.FindBy;
 public class SimpleFormDemo {
     //SIngle Input Field
     @FindBy(xpath = "//div[@class='panel-heading' and text()='Single Input Field']")
-    public WebElement SingleInputFieldHeading;
+    public WebElement singleInputFieldHeading;
 
     @FindBy(xpath = "//div[@id='image-darkener']")
-    public  WebElement ImageDarkener;
+    public  WebElement imageDarkener;
 
     @FindBy(xpath = "//a[@id='at-cv-lightbox-close']")
-    public WebElement ImageCloseButton;
+    public WebElement imageCloseButton;
 
     @FindBy(xpath = "//label[@for='message' and text()='Enter message']")
-    public WebElement EnterMessageLabel;
+    public WebElement enterMessageLabel;
 
     @FindBy(xpath = "//input[@id='user-message']")
-    public WebElement InputMessageBox;
+    public WebElement inputMessageBox;
 
     @FindBy(xpath = "//button[@onclick='showInput();']")
-    public WebElement ShowMessageButton;
+    public WebElement showMessageButton;
 
     @FindBy(xpath = "//div[@id='user-message']/label")
-    public WebElement YourMessageLabel;
+    public WebElement yourMessageLabel;
 
     @FindBy(xpath = "//div[@id='user-message']/span[@id='display']")
-    public WebElement MessageDisplay;
+    public WebElement messageDisplay;
 
     //Two Input Field
     @FindBy(xpath = "//label[@for='value1']")
-    public WebElement EnterALabel;
+    public WebElement enterALabel;
 
     @FindBy(xpath = "//label[@for='value2']")
-    public WebElement EnterBLabel;
+    public WebElement enterBLabel;
 
     @FindBy(xpath = "//label[text()=' Total a + b = ']")
-    public WebElement TotalLabel;
+    public WebElement totalLabel;
 
     @FindBy(xpath = "//input[@id= 'sum1']")
-    public WebElement InputA;
+    public WebElement inputA;
 
     @FindBy(xpath = "//input[@id= 'sum2']")
-    public WebElement InputB;
+    public WebElement inputB;
 
     @FindBy(xpath = "//button[@onclick='return total()']")
-    public WebElement GetTotalButton;
+    public WebElement getTotalButton;
 
-    @FindBy(xpath = "//span[@id='displayvalue']")
-    public WebElement DisplayValue;
+    @FindBy(xpath = "//span[@id='displayValue']")
+    public WebElement displayValue;
 
 }

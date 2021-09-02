@@ -12,34 +12,34 @@ public class CheckboxDemo {
 
     //Single Checkbox Demo
     @FindBy(xpath = "//div[@class='panel-heading' and text()='Single Checkbox Demo']")
-    public WebElement SingleCheckboxHeader;
+    public WebElement singleCheckboxHeader;
 
     @FindBy(xpath = "//div[@class='panel-body']//p[text()=' Clicking on the checkbox will display a success message. Keep an eye on it']")
-    public  WebElement SingleCheckboxMessage;
+    public  WebElement singleCheckboxMessage;
 
     @FindBy(xpath = "//input[@id='isAgeSelected']")
-    public  WebElement SingleCheckboxClick;
+    public  WebElement singleCheckboxClick;
 
     @FindBy(xpath = "//div[@id='txtAge']")
-    public  WebElement CheckboxCheckedMessage;
+    public  WebElement checkboxCheckedMessage;
 
     //Multiple checkbox Demo
     @FindBy(xpath = "//div[@class='panel-heading' and text()='Multiple Checkbox Demo']")
-    public  WebElement MultiCheckboxHeader;
+    public  WebElement multiCheckboxHeader;
 
     @FindBy(xpath = "//div[@class='panel-body']//p[text()='Check the below points before automating']")
-    public  WebElement MultiCheckboxMessage;
+    public  WebElement multiCheckboxMessage;
 
     @FindBy(xpath = "//div[@class='col-md-6 text-left']//ul//li")
-    public List<WebElement> MultiCheckboxMessages;
+    public List<WebElement> multiCheckboxMessages;
 
     @FindBy(xpath = "//*[@id='easycont']/div/div[2]/div[2]/div[2]/div/label")
-    public List<WebElement> CheckboxOptions;
+    public List<WebElement> checkboxOptions;
 
     @FindBy(xpath = "//input[@id='check1' and @value='Check All']")
-    public WebElement CheckAllButton;
+    public WebElement checkAllButton;
 
     @FindBy(xpath = "//input[@id='check1' and @value='Uncheck All']")
-    public WebElement UnCheckAllButton;
+    public WebElement uncheckAllButton;
 
 }

@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class TestBaseFactory {
     @FindBy(xpath = "//div[@class='col-md-3 sidenav']//div[@class='panel-heading']")
-    public WebElement MenuListHeader;
+    public WebElement menuListHeader;
 
     @FindBy(xpath = "//ul[@id='treemenu']//a[@href='#' and text()='All Examples']")
-    public WebElement AllExamplesNavBar;
+    public WebElement allExamplesNavBar;
 
     @FindBy(xpath = "//ul[@id='treemenu']//a[@href='#' and text()='Input Forms']")
-    public  WebElement InputFormsNavBar;
+    public  WebElement inputFormsNavBar;
 
     @FindBy(xpath = "//li[@class='tree-branch']//a[@href='#' and text()='Input Forms']//following::ul//li[@style='display: list-item;']/a")
-    public List<WebElement> InputFormsItems;
+    public List<WebElement> inputFormsItems;
 }

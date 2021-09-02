@@ -54,12 +54,12 @@ public class TestBaseMethods {
     }
     //Test cleanup
     @After
-    public void TestClean() {
+    public void testClean() {
         driver.quit();
     }
 
     //Wait for IWebElement to be displayed using WebDriverWait
-    public void WaitForDisplayed(WebElement element) {
+    public void waitForDisplayed(WebElement element) {
         Assert.assertNotNull("The element return as null.", element);
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -73,7 +73,7 @@ public class TestBaseMethods {
             Assert.assertTrue("element was not displayed.", element.isDisplayed());
         }
         catch (TimeoutException e) {
-            Assert.assertFalse("WaitForDisplayed timed out in 30seconds", element.isDisplayed());
+            Assert.assertFalse("waitForDisplayed timed out in 30seconds", element.isDisplayed());
             System.out.println(e.getMessage());
         }
 
@@ -82,14 +82,14 @@ public class TestBaseMethods {
 
 
     //Verify a list of elements are all displayed.
-    public void VerifyElementList(List<WebElement> elements, List<String> strElements)
+    public void verifyElementList(List<WebElement> elements, List<String> strElements)
     {
         for(WebElement e:elements) {
-            WaitForDisplayed(e);
-            CompareListWebElementToListString(elements, strElements);
+            waitForDisplayed(e);
+            compareListWebElementToListString(elements, strElements);
         }
     }
-    public void CompareListWebElementToListString(List<WebElement> elements, List<String> strElements)
+    public void compareListWebElementToListString(List<WebElement> elements, List<String> strElements)
     {
         int i = 0;
         for (String str:strElements)
@@ -100,7 +100,7 @@ public class TestBaseMethods {
     }
 
     //wait for the element to be clickable. Retry maxTries times.
-    public void ClickWhenAble(WebElement element, long maxTries) {
+    public void clickWhenAble(WebElement element, long maxTries) {
         for (int retryCount = 1; retryCount <= maxTries; retryCount++) {
             {
                 try {
@@ -121,22 +121,22 @@ public class TestBaseMethods {
 
         }
     }
-    public void MenuList(String menuName)
+    public void menuList(String menuName)
     {
         TestBaseFactory testBaseFactory = PageFactory.initElements(driver, TestBaseFactory.class);
         List<WebElement> elementList = new ArrayList<WebElement>();
-        elementList.add(testBaseFactory.MenuListHeader);
-        elementList.add(testBaseFactory.AllExamplesNavBar);
-        elementList.add(testBaseFactory.InputFormsNavBar);
+        elementList.add(testBaseFactory.menuListHeader);
+        elementList.add(testBaseFactory.allExamplesNavBar);
+        elementList.add(testBaseFactory.inputFormsNavBar);
 
        List<String> elementListString = new ArrayList<String>();
        elementListString.add("Menu List");
         elementListString.add("All Examples");
         elementListString.add("Input Forms");
 
-        VerifyElementList(elementList, elementListString);
+        verifyElementList(elementList, elementListString);
 
-        testBaseFactory.InputFormsNavBar.click();
+        testBaseFactory.inputFormsNavBar.click();
         List<String> elementCollectionItems =  new ArrayList<String>();
 
         elementCollectionItems.add("Simple Form Demo");
@@ -147,9 +147,9 @@ public class TestBaseMethods {
         elementCollectionItems.add("Ajax Form Submit");
         elementCollectionItems.add("JQuery Select dropdown");
 
-        VerifyElementList(testBaseFactory.InputFormsItems, elementCollectionItems);
+        verifyElementList(testBaseFactory.inputFormsItems, elementCollectionItems);
 
-        for (WebElement e: testBaseFactory.InputFormsItems)
+        for (WebElement e: testBaseFactory.inputFormsItems)
         {
             if (e.getText().trim().equals(menuName))
             {
@@ -159,26 +159,26 @@ public class TestBaseMethods {
         }
     }
 
-    public void ImageCloseMethod(String menuName) {
+    public void imageCloseMethod(String menuName) {
         SimpleFormDemo simpleFormDemo = PageFactory.initElements(driver, SimpleFormDemo.class);
         long timeoutInSeconds = 30;
         wait = new WebDriverWait(driver, timeoutInSeconds);
-        wait.until(e->simpleFormDemo.ImageDarkener.isDisplayed());
+        wait.until(e->simpleFormDemo.imageDarkener.isDisplayed());
 
-        if ((timeoutInSeconds <= 30) && (simpleFormDemo.ImageDarkener.isDisplayed()))
+        if ((timeoutInSeconds <= 30) && (simpleFormDemo.imageDarkener.isDisplayed()))
         {
-            simpleFormDemo.ImageCloseButton.click();
-            MenuList(menuName);
+            simpleFormDemo.imageCloseButton.click();
+            menuList(menuName);
         }
-        else if ((timeoutInSeconds >= 30) && (!simpleFormDemo.ImageDarkener.isDisplayed()))
+        else if ((timeoutInSeconds >= 30) && (!simpleFormDemo.imageDarkener.isDisplayed()))
         {
-            wait.until(e->simpleFormDemo.ImageDarkener.isDisplayed());
-            simpleFormDemo.ImageCloseButton.click();
-            MenuList(menuName);
+            wait.until(e->simpleFormDemo.imageDarkener.isDisplayed());
+            simpleFormDemo.imageCloseButton.click();
+            menuList(menuName);
         }
         else
         {
-            MenuList(menuName);
+            menuList(menuName);
         }
     }
 
