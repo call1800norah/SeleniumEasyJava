@@ -1,4 +1,4 @@
-package TestBase;
+package testBase;
 
 import inputFormsPageFactory.SimpleFormDemo;
 import org.junit.Assert;
@@ -20,7 +20,6 @@ import static org.junit.Assert.assertEquals;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.NoSuchElementException;
 
 

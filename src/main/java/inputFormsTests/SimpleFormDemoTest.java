@@ -1,11 +1,10 @@
 package inputFormsTests;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import TestBase.TestBaseMethods;
+import testBase.TestBaseMethods;
 import inputFormsPageFactory.SimpleFormDemo;
 
 import java.util.ArrayList;

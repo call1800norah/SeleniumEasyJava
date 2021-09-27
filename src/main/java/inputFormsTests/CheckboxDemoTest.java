@@ -1,6 +1,6 @@
 package inputFormsTests;
 
-import TestBase.TestBaseMethods;
+import testBase.TestBaseMethods;
 import inputFormsPageFactory.CheckboxDemo;
 import org.junit.Assert;
 import org.junit.Test;
